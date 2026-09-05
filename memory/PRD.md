@@ -48,3 +48,9 @@ Regras: taxa superior (cargos 01-12) R$160,00; médio (13-15) R$120,00. Localida
 Identificadores JS internos window.IdecanNotice/IdecanConfirm mantidos (nomes internos, não visíveis ao usuário).
 Verificado por testing_agent (iterations 10-13): 100% backend e frontend.
 Pendências/observações: imagem decorativa do login do painel (Tartaruga Ninja) é um asset off-brand — aguardando decisão do usuário para trocar.
+
+## Change log — 2026-06 (Rebrand to Instituto AOCP)
+- User request: rebrand entire public site from Cebraspe/SEAP-MA to Instituto AOCP + concurso SAEB Bahia (Polícia Civil, 750 vagas: Delegado 100, Escrivão 150, Investigador 500).
+- DONE (homepage first, per user): replaced /app/frontend/public/inicio.html with the user-provided Instituto AOCP homepage (self-contained: inline Tailwind CSS + base64 images). Adjustments: removed CSP meta (was blocking /api fetch), removed external canonical, repointed "Formulário de Solicitação de Inscrição" link -> /dados-inscricao.html, injected /api/track/access tracker, appended </body></html>.
+- Registration fees agreed for next phase: Delegado R$ 220,00 | Escrivão R$ 190,00 | Investigador R$ 190,00.
+- PENDING (next): adapt registration flow (edital pages, dados-inscricao, inscricao, confirmacao, pagamento-pix) + admin panel to SAEB Bahia / 3 cargos + fees; add salaries later.
