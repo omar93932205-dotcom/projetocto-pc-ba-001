@@ -740,7 +740,7 @@ h2.tituloPagina span { border-bottom:0 !important; text-indent:0 !important; pad
  <b>31/08/2026</b>
 </p>
 </div>
-<div style="padding:10px 25px 20px 25px;font-family:Arial,Helvetica,sans-serif;color:#333;">
+<style>#TopoInformacoes{padding-left:0!important;padding-right:0!important}#TopoInformacoes .conf-list,#TopoInformacoes .conf-flags{margin-left:0;margin-right:0}</style><div style="padding:14px 2px 24px 2px;font-family:Arial,Helvetica,sans-serif;color:#333;">
 <p style="margin:6px 0;font-size:14px;">Confira seus dados. Após confirmar não será possível alterar — se houver erro, clique em <strong>Alterar Dados</strong>.</p>
 <style>
 #TopoInformacoes .conf-list{border:1px solid #e6eaee;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.05);margin-top:18px;background:#fff}
@@ -757,9 +757,9 @@ h2.tituloPagina span { border-bottom:0 !important; text-indent:0 !important; pad
 @media(max-width:640px){#TopoInformacoes .conf-lbl{flex-basis:auto}#TopoInformacoes .conf-row{flex-direction:column;gap:2px}#TopoInformacoes .conf-flags p{flex-direction:column;align-items:flex-start;gap:4px}}
 </style>
 <div class="conf-list" data-testid="tabela-confirmacao"><div class="conf-row"><span class="conf-lbl">Inscrição</span><span class="conf-val" data-testid="c-inscricao" id="c-inscricao">—</span></div><div class="conf-row"><span class="conf-lbl">Vaga Escolhida</span><span class="conf-val" data-testid="c-vaga" id="c-vaga">—</span></div><div class="conf-row"><span class="conf-lbl">Estado da Prova</span><span class="conf-val" data-testid="c-uf-prova" id="c-uf-prova">—</span></div><div class="conf-row"><span class="conf-lbl">Município da Prova</span><span class="conf-val" data-testid="c-municipio-prova" id="c-municipio-prova">—</span></div><div class="conf-row"><span class="conf-lbl">Nome</span><span class="conf-val" data-testid="c-nome" id="c-nome">—</span></div><div class="conf-row"><span class="conf-lbl">Sexo</span><span class="conf-val" data-testid="c-sexo" id="c-sexo">—</span></div><div class="conf-row"><span class="conf-lbl">CPF</span><span class="conf-val" data-testid="c-cpf" id="c-cpf">—</span></div><div class="conf-row"><span class="conf-lbl">Data Nascimento</span><span class="conf-val" data-testid="c-data" id="c-data">—</span></div><div class="conf-row"><span class="conf-lbl">Documento</span><span class="conf-val" data-testid="c-doc" id="c-doc">—</span></div><div class="conf-row"><span class="conf-lbl">Arquivos</span><span class="conf-val" data-testid="c-arquivos" id="c-arquivos">—</span></div><div class="conf-row"><span class="conf-lbl">CEP</span><span class="conf-val" data-testid="c-cep" id="c-cep">—</span></div><div class="conf-row"><span class="conf-lbl">Logradouro</span><span class="conf-val" data-testid="c-logradouro" id="c-logradouro">—</span></div><div class="conf-row"><span class="conf-lbl">Número</span><span class="conf-val" data-testid="c-numero" id="c-numero">—</span></div><div class="conf-row"><span class="conf-lbl">Complemento</span><span class="conf-val" data-testid="c-complemento" id="c-complemento">—</span></div><div class="conf-row"><span class="conf-lbl">Bairro</span><span class="conf-val" data-testid="c-bairro" id="c-bairro">—</span></div><div class="conf-row"><span class="conf-lbl">Cidade</span><span class="conf-val" data-testid="c-cidade" id="c-cidade">—</span></div><div class="conf-row"><span class="conf-lbl">UF</span><span class="conf-val" data-testid="c-uf" id="c-uf">—</span></div><div class="conf-row"><span class="conf-lbl">Celular</span><span class="conf-val" data-testid="c-celular" id="c-celular">—</span></div><div class="conf-row"><span class="conf-lbl">E-mail</span><span class="conf-val" data-testid="c-email" id="c-email">—</span></div></div>
-<div class="conf-flags"><p style="margin:22px 0 6px 0;">É optante pela reserva de vagas prevista na Lei 5.309/2017 para os negros? <span data-testid="c-negros" id="c-negros" style="float:right;">( ) SIM ( ) NÃO</span></p>
-<p style="margin:6px 0;">É optante pela reserva de vagas prevista na Lei 3113/94 para pessoas com deficiência? <span data-testid="c-pcd" id="c-pcd" style="float:right;">( ) SIM ( ) NÃO</span></p>
-<p style="margin:6px 0;">Necessidade de atendimento especial? <span data-testid="c-atendimento" id="c-atendimento" style="float:right;">( ) SIM ( ) NÃO</span></p>
+<div class="conf-flags"><p style="margin:22px 0 6px 0;">É optante pela reserva de vagas prevista na Lei 5.309/2017 para os negros? <span data-testid="c-negros" id="c-negros" style="float:right;">—</span></p>
+<p style="margin:6px 0;">É optante pela reserva de vagas prevista na Lei 3113/94 para pessoas com deficiência? <span data-testid="c-pcd" id="c-pcd" style="float:right;">—</span></p>
+<p style="margin:6px 0;">Necessidade de atendimento especial? <span data-testid="c-atendimento" id="c-atendimento" style="float:right;">—</span></p>
 </div><div style="margin-top:28px;">
 <button data-testid="btn-alterar-dados" id="btn-alterar" style="padding:12px 24px;background:#e5e7eb;border:1.5px solid #6b7280;color:#02142c;font-weight:700;font-size:14px;letter-spacing:.5px;text-transform:uppercase;cursor:pointer;border-radius:6px;margin:0 8px 0 0;min-width:180px;height:44px;box-sizing:border-box;" type="button">Alterar Dados</button>
 <button data-testid="btn-confirmar-inscricao" id="btn-confirmar" onmouseout="this.style.background='#36a980';this.style.borderColor='#36a980';" onmouseover="this.style.background='#2f8f6c';this.style.borderColor='#2f8f6c';" style="padding:12px 24px;background:#36a980;color:#ffffff;border:1.5px solid #36a980;font-weight:700;font-size:14px;letter-spacing:.5px;text-transform:uppercase;cursor:pointer;border-radius:6px;transition:background .2s, border-color .2s;min-width:180px;height:44px;box-sizing:border-box;" type="button">Confirmar Inscrição</button>
@@ -844,7 +844,8 @@ h2.tituloPagina span { border-bottom:0 !important; text-indent:0 !important; pad
   function mark(id, yes){
     var el = document.getElementById(id);
     if(!el) return;
-    el.textContent = yes ? '(X) SIM   ( ) NÃO' : '( ) SIM   (X) NÃO';
+    el.textContent = yes ? 'SIM' : 'NÃO';
+    el.style.color = yes ? '#2e7d32' : '#b3261e';
   }
   mark('c-pcd', !!d.PORTADOR_DEFICIENCIA);
   mark('c-negros', !!d.cotas_negros);
