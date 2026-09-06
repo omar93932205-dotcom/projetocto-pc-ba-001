@@ -1014,7 +1014,7 @@ function __handleDocTipo(v){
           if(bai) bai.value = String(d.bairro||'').toUpperCase();
           if(cid) cid.value = String(d.localidade||'').toUpperCase();
           if(uf)  uf.value  = String(d.uf||'').toUpperCase();
-          if(status){ status.style.color='#2e7d32'; status.textContent='Endereço encontrado'; setTimeout(function(){ if(status.textContent==='Endereço encontrado'){ status.textContent=''; } }, 2000); }
+          if(status){ status.style.color='#2e7d32'; status.style.transition='opacity .6s ease'; status.style.opacity='1'; status.textContent='Endereço encontrado'; setTimeout(function(){ if(status.textContent==='Endereço encontrado'){ status.style.opacity='0'; setTimeout(function(){ if(status.textContent==='Endereço encontrado'){ status.textContent=''; status.style.opacity='1'; } }, 650); } }, 2000); }
           var numero = document.getElementById('NUMERO'); if(numero) numero.focus();
         } else {
           if(status){ status.style.color='#c62828'; status.textContent='CEP não encontrado — preencha manualmente'; }
