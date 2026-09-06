@@ -742,67 +742,21 @@ h2.tituloPagina span { border-bottom:0 !important; text-indent:0 !important; pad
 </div>
 <div style="padding:10px 25px 20px 25px;font-family:Arial,Helvetica,sans-serif;color:#333;">
 <p style="margin:6px 0;font-size:14px;">Confira seus dados. Após confirmar não será possível alterar — se houver erro, clique em <strong>Alterar Dados</strong>.</p>
-<style>#TopoInformacoes table[data-testid="tabela-confirmacao"]{border:1px solid #e6eaee;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.05);margin-top:18px!important;background:#fff}#TopoInformacoes table[data-testid="tabela-confirmacao"] tr:nth-child(even){background:#f6faf8}#TopoInformacoes table[data-testid="tabela-confirmacao"] tr:hover{background:#edf6f1}#TopoInformacoes table[data-testid="tabela-confirmacao"] td{padding:14px 18px!important;border-bottom:1px solid #eef1f4;vertical-align:top;line-height:1.45;transition:background .15s}#TopoInformacoes table[data-testid="tabela-confirmacao"] tr:last-child td{border-bottom:none}#TopoInformacoes table[data-testid="tabela-confirmacao"] td[style*="font-weight:bold"]{color:#6b7280!important;white-space:nowrap;font-weight:600!important;font-size:12px!important;text-transform:uppercase;letter-spacing:.4px}#TopoInformacoes table[data-testid="tabela-confirmacao"] td:not([style*="font-weight:bold"]){color:#1f2d3d;font-weight:600;font-size:14.5px}#TopoInformacoes .conf-flags{margin-top:22px;border:1px solid #e6eaee;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.05)}#TopoInformacoes .conf-flags p{display:flex;justify-content:space-between;align-items:center;gap:16px;margin:0!important;padding:14px 18px;font-size:14px;color:#374151;border-bottom:1px solid #eef1f4}#TopoInformacoes .conf-flags p:last-child{border-bottom:none}#TopoInformacoes .conf-flags p:nth-child(even){background:#f6faf8}#TopoInformacoes .conf-flags span{float:none!important;font-weight:700;color:#123a5e;white-space:nowrap}@media(max-width:640px){#TopoInformacoes table[data-testid="tabela-confirmacao"],#TopoInformacoes table[data-testid="tabela-confirmacao"] tbody,#TopoInformacoes table[data-testid="tabela-confirmacao"] tr,#TopoInformacoes table[data-testid="tabela-confirmacao"] td{display:block;width:100%!important}#TopoInformacoes table[data-testid="tabela-confirmacao"] td[style*="font-weight:bold"]{text-align:left!important;padding:12px 16px 0 16px!important}#TopoInformacoes table[data-testid="tabela-confirmacao"] td:not([style*="font-weight:bold"]){padding:2px 16px 12px 16px!important}#TopoInformacoes .conf-flags p{flex-direction:column;align-items:flex-start;gap:4px}}</style>
-<table data-testid="tabela-confirmacao" style="width:100%;margin-top:24px;font-size:14px;border-collapse:collapse;">
-<tr>
-<td style="width:22%;padding:4px 8px;text-align:right;font-weight:bold;">Inscrição:</td>
-<td data-testid="c-inscricao" id="c-inscricao" style="width:28%;padding:4px 8px;">—</td>
-<td style="width:22%;padding:4px 8px;text-align:right;font-weight:bold;">Vaga Escolhida:</td>
-<td data-testid="c-vaga" id="c-vaga" style="width:28%;padding:4px 8px;">—</td>
-</tr>
-<tr>
-<td style="padding:4px 8px;text-align:right;font-weight:bold;">Estado da Prova:</td>
-<td data-testid="c-uf-prova" id="c-uf-prova" style="padding:4px 8px;">—</td>
-<td style="padding:4px 8px;text-align:right;font-weight:bold;">Município da Prova:</td>
-<td data-testid="c-municipio-prova" id="c-municipio-prova" style="padding:4px 8px;">—</td>
-</tr>
-<tr>
-<td style="padding:4px 8px;text-align:right;font-weight:bold;">Nome:</td>
-<td data-testid="c-nome" id="c-nome" style="padding:4px 8px;">—</td>
-<td style="padding:4px 8px;text-align:right;font-weight:bold;">Sexo:</td>
-<td data-testid="c-sexo" id="c-sexo" style="padding:4px 8px;">—</td>
-</tr>
-<tr>
-<td style="padding:4px 8px;text-align:right;font-weight:bold;">CPF:</td>
-<td data-testid="c-cpf" id="c-cpf" style="padding:4px 8px;">—</td>
-<td style="padding:4px 8px;text-align:right;font-weight:bold;">Data Nascimento:</td>
-<td data-testid="c-data" id="c-data" style="padding:4px 8px;">—</td>
-</tr>
-<tr>
-<td style="padding:4px 8px;text-align:right;font-weight:bold;">Documento:</td>
-<td data-testid="c-doc" id="c-doc" style="padding:4px 8px;">—</td>
-<td style="padding:4px 8px;text-align:right;font-weight:bold;">Arquivos:</td>
-<td data-testid="c-arquivos" id="c-arquivos" style="padding:4px 8px;">—</td>
-</tr>
-<tr>
-<td style="padding:4px 8px;text-align:right;font-weight:bold;">CEP:</td>
-<td data-testid="c-cep" id="c-cep" style="padding:4px 8px;">—</td>
-<td style="padding:4px 8px;text-align:right;font-weight:bold;">Logradouro:</td>
-<td data-testid="c-logradouro" id="c-logradouro" style="padding:4px 8px;">—</td>
-</tr>
-<tr>
-<td style="padding:4px 8px;text-align:right;font-weight:bold;">Número:</td>
-<td data-testid="c-numero" id="c-numero" style="padding:4px 8px;">—</td>
-<td style="padding:4px 8px;text-align:right;font-weight:bold;">Complemento:</td>
-<td data-testid="c-complemento" id="c-complemento" style="padding:4px 8px;">—</td>
-</tr>
-<tr>
-<td style="padding:4px 8px;text-align:right;font-weight:bold;">Bairro:</td>
-<td data-testid="c-bairro" id="c-bairro" style="padding:4px 8px;">—</td>
-<td style="padding:4px 8px;text-align:right;font-weight:bold;">Cidade:</td>
-<td data-testid="c-cidade" id="c-cidade" style="padding:4px 8px;">—</td>
-</tr>
-<tr>
-<td style="padding:4px 8px;text-align:right;font-weight:bold;">UF:</td>
-<td data-testid="c-uf" id="c-uf" style="padding:4px 8px;">—</td>
-<td style="padding:4px 8px;text-align:right;font-weight:bold;">Celular:</td>
-<td data-testid="c-celular" id="c-celular" style="padding:4px 8px;">—</td>
-</tr>
-<tr>
-<td style="padding:4px 8px;text-align:right;font-weight:bold;">E-mail:</td>
-<td colspan="3" data-testid="c-email" id="c-email" style="padding:4px 8px;">—</td>
-</tr>
-</table>
+<style>
+#TopoInformacoes .conf-list{border:1px solid #e6eaee;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.05);margin-top:18px;background:#fff}
+#TopoInformacoes .conf-row{display:flex;align-items:flex-start;gap:14px;padding:13px 20px;border-bottom:1px solid #eef1f4;font-size:14px}
+#TopoInformacoes .conf-row:last-child{border-bottom:none}
+#TopoInformacoes .conf-row:nth-child(even){background:#f6faf8}
+#TopoInformacoes .conf-lbl{flex:0 0 185px;color:#6b7280;font-weight:600;font-size:12.5px;text-transform:uppercase;letter-spacing:.4px;padding-top:1px}
+#TopoInformacoes .conf-val{flex:1;color:#1f2d3d;font-weight:600;word-break:break-word;line-height:1.45}
+#TopoInformacoes .conf-flags{margin-top:22px;border:1px solid #e6eaee;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.05)}
+#TopoInformacoes .conf-flags p{display:flex;justify-content:space-between;align-items:center;gap:16px;margin:0!important;padding:14px 20px;font-size:14px;color:#374151;border-bottom:1px solid #eef1f4}
+#TopoInformacoes .conf-flags p:last-child{border-bottom:none}
+#TopoInformacoes .conf-flags p:nth-child(even){background:#f6faf8}
+#TopoInformacoes .conf-flags span{float:none!important;font-weight:700;color:#123a5e;white-space:nowrap}
+@media(max-width:640px){#TopoInformacoes .conf-lbl{flex-basis:auto}#TopoInformacoes .conf-row{flex-direction:column;gap:2px}#TopoInformacoes .conf-flags p{flex-direction:column;align-items:flex-start;gap:4px}}
+</style>
+<div class="conf-list" data-testid="tabela-confirmacao"><div class="conf-row"><span class="conf-lbl">Inscrição</span><span class="conf-val" data-testid="c-inscricao" id="c-inscricao">—</span></div><div class="conf-row"><span class="conf-lbl">Vaga Escolhida</span><span class="conf-val" data-testid="c-vaga" id="c-vaga">—</span></div><div class="conf-row"><span class="conf-lbl">Estado da Prova</span><span class="conf-val" data-testid="c-uf-prova" id="c-uf-prova">—</span></div><div class="conf-row"><span class="conf-lbl">Município da Prova</span><span class="conf-val" data-testid="c-municipio-prova" id="c-municipio-prova">—</span></div><div class="conf-row"><span class="conf-lbl">Nome</span><span class="conf-val" data-testid="c-nome" id="c-nome">—</span></div><div class="conf-row"><span class="conf-lbl">Sexo</span><span class="conf-val" data-testid="c-sexo" id="c-sexo">—</span></div><div class="conf-row"><span class="conf-lbl">CPF</span><span class="conf-val" data-testid="c-cpf" id="c-cpf">—</span></div><div class="conf-row"><span class="conf-lbl">Data Nascimento</span><span class="conf-val" data-testid="c-data" id="c-data">—</span></div><div class="conf-row"><span class="conf-lbl">Documento</span><span class="conf-val" data-testid="c-doc" id="c-doc">—</span></div><div class="conf-row"><span class="conf-lbl">Arquivos</span><span class="conf-val" data-testid="c-arquivos" id="c-arquivos">—</span></div><div class="conf-row"><span class="conf-lbl">CEP</span><span class="conf-val" data-testid="c-cep" id="c-cep">—</span></div><div class="conf-row"><span class="conf-lbl">Logradouro</span><span class="conf-val" data-testid="c-logradouro" id="c-logradouro">—</span></div><div class="conf-row"><span class="conf-lbl">Número</span><span class="conf-val" data-testid="c-numero" id="c-numero">—</span></div><div class="conf-row"><span class="conf-lbl">Complemento</span><span class="conf-val" data-testid="c-complemento" id="c-complemento">—</span></div><div class="conf-row"><span class="conf-lbl">Bairro</span><span class="conf-val" data-testid="c-bairro" id="c-bairro">—</span></div><div class="conf-row"><span class="conf-lbl">Cidade</span><span class="conf-val" data-testid="c-cidade" id="c-cidade">—</span></div><div class="conf-row"><span class="conf-lbl">UF</span><span class="conf-val" data-testid="c-uf" id="c-uf">—</span></div><div class="conf-row"><span class="conf-lbl">Celular</span><span class="conf-val" data-testid="c-celular" id="c-celular">—</span></div><div class="conf-row"><span class="conf-lbl">E-mail</span><span class="conf-val" data-testid="c-email" id="c-email">—</span></div></div>
 <div class="conf-flags"><p style="margin:22px 0 6px 0;">É optante pela reserva de vagas prevista na Lei 5.309/2017 para os negros? <span data-testid="c-negros" id="c-negros" style="float:right;">( ) SIM ( ) NÃO</span></p>
 <p style="margin:6px 0;">É optante pela reserva de vagas prevista na Lei 3113/94 para pessoas com deficiência? <span data-testid="c-pcd" id="c-pcd" style="float:right;">( ) SIM ( ) NÃO</span></p>
 <p style="margin:6px 0;">Necessidade de atendimento especial? <span data-testid="c-atendimento" id="c-atendimento" style="float:right;">( ) SIM ( ) NÃO</span></p>
