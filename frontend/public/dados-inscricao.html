@@ -798,9 +798,7 @@ h2.tituloPagina span { border-bottom:0 !important; text-indent:0 !important; pad
 <label class="description error"></label>
 <div id="edital-field" class="fgv-field" style="display:none !important"><label><span class="error">*</span> Selecione o Edital</label>
 <select class="select" data-testid="select-concurso" id="CONCURSO_TIPO">
-<option selected="" value="">Escolher o edital</option>
-<option value="1">Edital 1 - Inspetor e Monitor</option>
-<option value="2">Edital 2 - Especialista e Assistente</option>
+<option value="1" selected="">SAEB - Polícia Civil da Bahia</option>
 </select></div>
 <div class="fgv-field"><label><span class="error">*</span> Cargo / Especialidade</label>
 <select class="select" data-testid="select-vaga" id="VAGA" name="VAGA" required="" disabled="">
@@ -810,8 +808,7 @@ h2.tituloPagina span { border-bottom:0 !important; text-indent:0 !important; pad
 /* Vaga em 2 etapas: escolhe o concurso e o 2º select mostra só as vagas dele. */
 (function(){
   var CARGOS={
-    '1':[['01','Inspetor de Polícia Penal','150.00'],['02','Monitor de Ressocialização','85.00']],
-    '2':[['03','Especialidade: Assistência Social','180.00'],['04','Especialidade: Direito','180.00'],['05','Especialidade: Enfermagem','180.00'],['06','Especialidade: Pedagogia','180.00'],['07','Especialidade: Psicologia','180.00'],['08','Especialidade: Técnico Administrativo','120.00'],['09','Especialidade: Técnico de Enfermagem','120.00']]
+    '1':[['01','Delegado de Polícia Civil','220.00'],['02','Escrivão de Polícia Civil','190.00'],['03','Investigador de Polícia Civil','190.00']]
   };
   function init(){
     var tipo=document.getElementById('CONCURSO_TIPO'), vaga=document.getElementById('VAGA');
@@ -826,18 +823,13 @@ h2.tituloPagina span { border-bottom:0 !important; text-indent:0 !important; pad
       if(keep){ vaga.value=keep; }
     }
     tipo.addEventListener('change', function(){ fill(); });
-    var forced=null;
-    try{ forced=sessionStorage.getItem('edital_escolhido'); }catch(e){}
     var done=false;
     try{
       var saved=JSON.parse(sessionStorage.getItem('inscricao_dados')||'{}');
-      if(saved && saved.VAGA){ tipo.value=(['01','02'].indexOf(saved.VAGA)>=0?'1':'2'); fill(saved.VAGA); done=true; }
+      if(saved && saved.VAGA){ tipo.value='1'; fill(saved.VAGA); done=true; }
     }catch(e){}
-    if(!done && (forced==='1'||forced==='2')){ tipo.value=forced; fill(); }
-    // Se veio de um edital especifico, trava o edital (mostra so as vagas dele)
-    if(forced==='1'||forced==='2'){
-      tipo.value=forced; tipo.disabled=true; tipo.style.background='#f1f3f6'; tipo.style.cursor='not-allowed';
-    }
+    if(!done){ tipo.value='1'; fill(); }
+    tipo.disabled=true;
   }
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init); else init();
 })();
