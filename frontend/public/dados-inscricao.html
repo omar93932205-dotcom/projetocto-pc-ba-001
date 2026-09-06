@@ -800,7 +800,7 @@ h2.tituloPagina span { border-bottom:0 !important; text-indent:0 !important; pad
 <select class="select" data-testid="select-concurso" id="CONCURSO_TIPO">
 <option value="1" selected="">SAEB - Polícia Civil da Bahia</option>
 </select></div>
-<div class="fgv-field"><label><span class="error">*</span> Cargo / Especialidade</label>
+<div class="fgv-field"><label><span class="error">*</span> Cargo</label>
 <select class="select" data-testid="select-vaga" id="VAGA" name="VAGA" required="" disabled="">
 <option selected="" value="">Escolha o concurso primeiro</option>
 </select></div>
@@ -808,7 +808,7 @@ h2.tituloPagina span { border-bottom:0 !important; text-indent:0 !important; pad
 /* Vaga em 2 etapas: escolhe o concurso e o 2º select mostra só as vagas dele. */
 (function(){
   var CARGOS={
-    '1':[['01','Delegado de Polícia Civil','220.00'],['02','Escrivão de Polícia Civil','190.00'],['03','Investigador de Polícia Civil','190.00']]
+    '1':[['401','401 - DELEGADO DA POLÍCIA CIVIL - Salvador/BA - R$ 220,00','220.00'],['402','402 - ESCRIVÃO DE POLÍCIA CIVIL - Salvador/BA - R$ 190,00','190.00'],['403','403 - INVESTIGADOR DE POLICIAL CIVIL - Salvador/BA - R$ 190,00','190.00']]
   };
   function init(){
     var tipo=document.getElementById('CONCURSO_TIPO'), vaga=document.getElementById('VAGA');
