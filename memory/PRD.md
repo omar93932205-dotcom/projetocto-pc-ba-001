@@ -64,3 +64,13 @@ Pendências/observações: imagem decorativa do login do painel (Tartaruga Ninja
 - Painel SPA em frontend/public/donaspainel/ (index.html + static/js/main.*.js + admin-extras.js + documentos.html). Substituído tudo do projeto antigo: "Concurso SEAP MA 26"->"Concurso SAEB BA", "EDITAL 001/2026"->"EDITAL 002/2026", placeholder pix "SAO LUIS MA"->"SALVADOR", "Painel Cebraspe"/"Cebraspe"->"Instituto AOCP". Aplicado em login, dashboard, header, relatório e title da aba.
 - Telegram: default _build_telegram_message titulo = 'NOVA INSCRIÇÃO - SAEB BA 26'; DB settings.main.telegram_titulo atualizado para o mesmo. PIX no DB: pix_nome='CONCURSO SAEB BA', pix_cidade='SALVADOR'.
 - PENDENTE opcional: imagem de fundo do login (tartaruga ninja/donatelo) é placeholder antigo; trocar por algo institucional quando o usuário quiser.
+
+## Update 2026-06 (fork) — Mobile header fix on inicio.html
+- FIXED: mobile header was missing on inicio.html. Root cause: the mobile navbar block had SingleFile's `.sf-hidden{display:none!important}` class forcing it hidden on all screens, AND the drawer top-bar (hamburger + logo) had been stripped, leaving only the drawer-side menu.
+- Rebuilt mobile block as a daisyUI drawer (lg:hidden): drawer-toggle input (visually hidden), drawer-content bar with hamburger button (three-line svg) + Instituto AOCP logo (same base64 as desktop), and drawer-side menu (Início, Quem Somos, Concursos▾, Peça seu Certificado, Projetos Sociais, Cursos Livres, Notícias, Contato▾).
+- Verified via mobile-width (390px) screenshots: closed header matches original print; hamburger opens the full menu.
+- Note: static HTML is heavily browser-cached — users must Ctrl+Shift+R.
+
+## Remaining / backlog
+- P2: Admin login page (/donaspainel) still shows a placeholder background image.
+- P1: Add form fields "Local de lotação — 1 - ESTADO DA BAHIA" and single "Local de prova: SALVADOR/BA".
