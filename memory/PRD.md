@@ -74,3 +74,8 @@ Pendências/observações: imagem decorativa do login do painel (Tartaruga Ninja
 ## Remaining / backlog
 - P2: Admin login page (/donaspainel) still shows a placeholder background image.
 - P1: Add form fields "Local de lotação — 1 - ESTADO DA BAHIA" and single "Local de prova: SALVADOR/BA".
+
+## Update 2026-06 (fork) — Links/Publicações viraram abas (tabs) no inicio.html
+- Antes: "Links" e "Publicações" eram duas colunas lado a lado com títulos empilhados (grid sm:grid-cols-2).
+- Agora: barra de abas (Links | Publicações) lado a lado; clicar troca o painel exibido. Aba ativa = fundo branco + sombra + texto azul (#1e3a8a); inativa = cinza. Toggle via função inline `aocpShowTab()` + IDs aocpTabLinks/aocpTabPub. data-testid: tab-links-btn, tab-pub-btn, tab-links-panel, tab-pub-panel.
+- Verificado por screenshot mobile: ambas as abas alternam corretamente. Lembrar Ctrl+Shift+R por causa do cache.
