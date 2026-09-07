@@ -85,3 +85,8 @@ Pendências/observações: imagem decorativa do login do painel (Tartaruga Ninja
 - Estrutura: grid original envolto em `<div class="hidden w-full lg:flex">` (grid com w-full) = escondido no mobile, visível no desktop; bloco de abas com `lg:hidden` = só no mobile.
 - IMPORTANTE: neste build só existem as utilities responsivas `.lg:flex` e `.lg:hidden` (NÃO existe `.lg:block` nem `.lg:grid`). Usar sempre lg:flex/lg:hidden para alternar desktop/mobile.
 - Verificado por screenshot: desktop 1280px mostra 2 colunas; mobile 390px mostra abas.
+
+## Update 2026-06 (fork) — pagamento-pix: impressão sem duplicação + texto do botão
+- Removida duplicação na impressão: o card do Edital (.aocp-edital-card) agora é escondido no @media print (adicionado à lista de hide). Na tela continua visível. Resultado: impressão sai só com o comprovante (print-header + dados), 1 página.
+- Botão "Imprimir Pagamento" renomeado para "Imprimir Comprovante" (id p-btn-print, data-testid btn-imprimir-pagamento).
+- Verificado: botão textContent = "Imprimir Comprovante"; edital card display=none em media=print.
