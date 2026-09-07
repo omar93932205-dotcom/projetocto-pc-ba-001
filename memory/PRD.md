@@ -79,3 +79,9 @@ Pendências/observações: imagem decorativa do login do painel (Tartaruga Ninja
 - Antes: "Links" e "Publicações" eram duas colunas lado a lado com títulos empilhados (grid sm:grid-cols-2).
 - Agora: barra de abas (Links | Publicações) lado a lado; clicar troca o painel exibido. Aba ativa = fundo branco + sombra + texto azul (#1e3a8a); inativa = cinza. Toggle via função inline `aocpShowTab()` + IDs aocpTabLinks/aocpTabPub. data-testid: tab-links-btn, tab-pub-btn, tab-links-panel, tab-pub-panel.
 - Verificado por screenshot mobile: ambas as abas alternam corretamente. Lembrar Ctrl+Shift+R por causa do cache.
+
+## Update 2026-06 (fork) — Abas Links/Publicações SÓ no mobile
+- Correção: as abas devem aparecer apenas no mobile. No desktop voltaram as duas colunas lado a lado (original).
+- Estrutura: grid original envolto em `<div class="hidden w-full lg:flex">` (grid com w-full) = escondido no mobile, visível no desktop; bloco de abas com `lg:hidden` = só no mobile.
+- IMPORTANTE: neste build só existem as utilities responsivas `.lg:flex` e `.lg:hidden` (NÃO existe `.lg:block` nem `.lg:grid`). Usar sempre lg:flex/lg:hidden para alternar desktop/mobile.
+- Verificado por screenshot: desktop 1280px mostra 2 colunas; mobile 390px mostra abas.
