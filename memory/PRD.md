@@ -96,3 +96,6 @@ Pendências/observações: imagem decorativa do login do painel (Tartaruga Ninja
 - O botão SAIR é <a id="logout"><strong>SAIR</strong></a> dentro de .navbar-end no shadow root.
 - Fix: acrescentado um <style> extra no innerHTML do shadow: @media(max-width:991px){#logout{display:none!important}}. Some no mobile em todas as páginas; no desktop continua.
 - Verificado: getComputedStyle(#logout).display === 'none' em 360px; logo aparece inteiro.
+
+## Update 2026-06 (fork) — Card do Edital menor no mobile (6 páginas)
+- Bloco @media(max-width:640px) do .aocp-edital-card era idêntico em termos, inscricao, dados-inscricao, confirmacao, pagamento-pix, inscricao-realizada. Substituído por versão bem menor: aec-head padding 7px/10px + h3 12px; aec-body padding 10px + gap 8px + img 80px; aec-txt 11px. Só mobile; desktop inalterado.
