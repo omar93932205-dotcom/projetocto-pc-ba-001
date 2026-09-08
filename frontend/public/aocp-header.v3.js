@@ -9,7 +9,7 @@ function inject(){
  host.style.cssText='display:block;width:100%;position:relative;z-index:9999;';
  document.body.insertBefore(host,document.body.firstChild);
  var r=host.attachShadow({mode:'open'});
- r.innerHTML='<style>'+d(CSS_B64)+'</style>'+d(HTML_B64);
+ r.innerHTML='<style>'+d(CSS_B64)+'</style>'+d(HTML_B64)+'<style>@media(max-width:991px){#logout{display:none!important}}</style>';
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',inject);else inject();
 })();

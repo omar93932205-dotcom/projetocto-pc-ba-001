@@ -90,3 +90,9 @@ Pendências/observações: imagem decorativa do login do painel (Tartaruga Ninja
 - Removida duplicação na impressão: o card do Edital (.aocp-edital-card) agora é escondido no @media print (adicionado à lista de hide). Na tela continua visível. Resultado: impressão sai só com o comprovante (print-header + dados), 1 página.
 - Botão "Imprimir Pagamento" renomeado para "Imprimir Comprovante" (id p-btn-print, data-testid btn-imprimir-pagamento).
 - Verificado: botão textContent = "Imprimir Comprovante"; edital card display=none em media=print.
+
+## Update 2026-06 (fork) — Remover botão SAIR no mobile (todas as páginas do fluxo)
+- O cabeçalho das páginas de fluxo é injetado por /aocp-header.v3.js dentro de um SHADOW DOM (host div#aocp-header-host). HTML e CSS ficam em base64 (HTML_B64/CSS_B64) decodificados por d().
+- O botão SAIR é <a id="logout"><strong>SAIR</strong></a> dentro de .navbar-end no shadow root.
+- Fix: acrescentado um <style> extra no innerHTML do shadow: @media(max-width:991px){#logout{display:none!important}}. Some no mobile em todas as páginas; no desktop continua.
+- Verificado: getComputedStyle(#logout).display === 'none' em 360px; logo aparece inteiro.
