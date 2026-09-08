@@ -104,3 +104,7 @@ Pendências/observações: imagem decorativa do login do painel (Tartaruga Ninja
 - Adicionado modal só no inicio.html (antes de </body>): logo Instituto AOCP (base64 do header), título azul #1e3a8a "Aviso importante", texto sobre encerramento das inscrições (08/09/2026 23h59min), botão pill azul "OK, entendi". Overlay rgba(15,23,42,.55).
 - Abre automaticamente 1x por visita: sessionStorage key "aocp_aviso_saeb_v1". Fecha no botão ou clique no overlay. NÃO aparece nas demais páginas.
 - data-testid: modal-aviso-overlay, modal-aviso-ok-btn. Verificado via DOM (abre flex, fecha none, flag=1, logoLen 33078).
+
+## Update 2026-06 (fork) — Funil por dispositivo (Desktop x Mobile) no painel admin
+- Backend: novo endpoint GET /api/admin/dashboard/funnel-devices (admin_routes.py, após o funnel). Retorna por etapa {label, desktop, mobile} para: Acessos ao site (accesses), Inscrições finalizadas (inscricoes finalized=True), PIX gerado/copiado/baixado. Device vem do doc; se faltar, infere do user_agent; para PIX usa mapa CPF->device da inscrição (funciona com dados antigos).
+- Frontend: admin-extras.js injeta card "ORIGEM POR DISPOSITIVO" no dashboard (função injectFunnelDevices/findFunnelRow), inserido como card próprio logo após a linha Funil/Atividade. Cache bust index.html v=20260608c. data-testid n/a (build). Verificado: card alinhado (left 300, não sob a sidebar), dados batem com KPIs (15=13+2).

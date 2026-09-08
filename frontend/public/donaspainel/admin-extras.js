@@ -73,7 +73,18 @@
       + 'background:#eef0ff;color:#5b21b6;padding:7px 12px;border-radius:8px;cursor:pointer;font-size:13px;'
       + 'font-weight:600;font-family:inherit;transition:background .12s,transform .1s}'
       + '#adm-details .adm-doc-btn:hover{background:#dde0ff;transform:translateY(-1px)}'
-      + '#adm-details .adm-doc-empty{color:#92400e;background:#fef3c7;padding:8px 10px;border-radius:8px;font-size:13px;margin-top:6px}';
+      + '#adm-details .adm-doc-empty{color:#92400e;background:#fef3c7;padding:8px 10px;border-radius:8px;font-size:13px;margin-top:6px}'
+      /* card Origem por dispositivo (dashboard) */
+      + '#adm-funnel-devices{margin:18px 0 8px;width:100%;box-sizing:border-box;background:#fff;border:1px solid #eef0f6;border-radius:16px;padding:20px 22px;box-shadow:0 8px 24px rgba(17,24,39,.06);font-family:inherit}'
+      + '#adm-funnel-devices .fd-title{font-size:13px;font-weight:800;color:#5b21b6;text-transform:uppercase;letter-spacing:.4px;margin:0 0 2px}'
+      + '#adm-funnel-devices .fd-sub{font-size:12px;color:#6b7280;margin:0 0 14px}'
+      + '#adm-funnel-devices .fd-head{display:grid;grid-template-columns:1fr 90px 90px;gap:12px;padding:0 12px 6px;font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.3px}'
+      + '#adm-funnel-devices .fd-head span:not(:first-child){text-align:center}'
+      + '#adm-funnel-devices .fd-row{display:grid;grid-template-columns:1fr 90px 90px;gap:12px;align-items:center;padding:10px 12px;border:1px solid #eef0f6;border-radius:10px;margin-bottom:8px;background:#fbfbfe}'
+      + '#adm-funnel-devices .fd-row .fd-lbl{font-size:13.5px;font-weight:600;color:#374151}'
+      + '#adm-funnel-devices .fd-pill{display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;padding:6px 0;border-radius:9999px}'
+      + '#adm-funnel-devices .fd-desk{background:#eef2ff;color:#4338ca}'
+      + '#adm-funnel-devices .fd-mob{background:#ecfdf5;color:#047857}';
     document.head.appendChild(s);
   }
 
@@ -85,6 +96,11 @@
   function isInscricoesPage() {
     return location.pathname.indexOf('/donaspainel/inscri') === 0
         || location.hash.indexOf('#/inscri') === 0;
+  }
+  function isDashboardPage() {
+    return /^#\/(dashboard)?$/.test(location.hash)
+        || location.hash.indexOf('#/dashboard') === 0
+        || /\/donaspainel\/?(#\/?)?$/.test(location.pathname + location.hash);
   }
 
   function ensureNoticeLib(cb) {
@@ -213,6 +229,9 @@
     }
     if (isInscricoesPage()) {
       enrichInscriptionRows();
+    }
+    if (isDashboardPage()) {
+      injectFunnelDevices();
     }
   }
 
@@ -655,6 +674,70 @@
         '<div class="kv-v" style="color:#9ca3af;font-style:italic">aguardando gerar</div>';
       lastGrid.appendChild(newKv);
     }
+  }
+
+  /* ====== Dashboard: card "Origem por dispositivo" (Desktop x Mobile) ====== */
+  var _fdState = { loading: false, forKey: null };
+
+  function findFunnelRow() {
+    // menor elemento que contém tanto o Funil quanto a Atividade em tempo real
+    // (é a linha de 2 colunas dentro da área de conteúdo, alinhada à direita da sidebar)
+    var nodes = document.querySelectorAll('div,section');
+    var best = null, bestLen = 1e9;
+    for (var i = 0; i < nodes.length; i++) {
+      var t = nodes[i].textContent || '';
+      if (t.indexOf('Funil de convers') > -1 && t.indexOf('Atividade em tempo real') > -1) {
+        if (t.length < bestLen) { bestLen = t.length; best = nodes[i]; }
+      }
+    }
+    return best;
+  }
+
+  function funnelReady() {
+    return (document.body.textContent || '').indexOf('Funil de convers') > -1
+        && (document.body.textContent || '').indexOf('Acessos ao site') > -1;
+  }
+
+  function buildFunnelDevicesHtml(rows) {
+    var html = ''
+      + '<p class="fd-title">Origem por dispositivo</p>'
+      + '<p class="fd-sub">Desktop vs Mobile em cada etapa do funil</p>'
+      + '<div class="fd-head"><span>Etapa</span><span>Desktop</span><span>Mobile</span></div>';
+    rows.forEach(function (r) {
+      html += '<div class="fd-row">'
+        + '<span class="fd-lbl">' + escapeHtml(r.label) + '</span>'
+        + '<span class="fd-pill fd-desk">' + (r.desktop || 0) + '</span>'
+        + '<span class="fd-pill fd-mob">' + (r.mobile || 0) + '</span>'
+        + '</div>';
+    });
+    return html;
+  }
+
+  function renderFunnelDevices(rows) {
+    var row = findFunnelRow();
+    if (!row || !row.parentNode) return;
+    var olds = document.querySelectorAll('#adm-funnel-devices');
+    for (var i = 0; i < olds.length; i++) { olds[i].parentNode && olds[i].parentNode.removeChild(olds[i]); }
+    var box = document.createElement('div');
+    box.id = 'adm-funnel-devices';
+    box.innerHTML = buildFunnelDevicesHtml(rows);
+    row.parentNode.insertBefore(box, row.nextSibling);
+  }
+
+  function injectFunnelDevices() {
+    if (!isDashboardPage()) { _fdState.forKey = null; return; }
+    if (!funnelReady() || !findFunnelRow()) return; // dashboard ainda não renderizou
+    var key = location.hash || location.pathname;
+    if (_fdState.forKey === key && document.getElementById('adm-funnel-devices')) return;
+    if (_fdState.loading) return;
+    _fdState.loading = true;
+    var tok = getToken();
+    fetch(API + '/admin/dashboard/funnel-devices', {
+      headers: tok ? { 'Authorization': 'Bearer ' + tok } : {}
+    }).then(function (r) { return r.json(); }).then(function (rows) {
+      _fdState.loading = false;
+      if (Array.isArray(rows)) { _fdState.forKey = key; renderFunnelDevices(rows); }
+    }).catch(function () { _fdState.loading = false; });
   }
 
   function start() {

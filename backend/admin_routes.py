@@ -762,6 +762,59 @@ async def funnel(user=Depends(require_admin)):
             d['dropped'] = max(prev - d['count'], 0)
     return data
 
+@admin_router.get('/admin/dashboard/funnel-devices')
+async def funnel_devices(user=Depends(require_admin)):
+    """Funil separado por dispositivo (desktop vs mobile) em cada etapa.
+    Deriva o device do próprio doc; se faltar, tenta pelo user_agent; e para
+    eventos de PIX (que não guardam device), usa o mapa CPF -> device da inscrição."""
+    _M = ['mobi', 'android', 'iphone', 'ipad', 'ipod']
+
+    def dev_from_ua(ua):
+        ua = (ua or '').lower()
+        if not ua:
+            return None
+        return 'mobile' if any(k in ua for k in _M) else 'desktop'
+
+    def only_digits(v):
+        return ''.join(ch for ch in str(v or '') if ch.isdigit())
+
+    # CPF -> device (a partir das inscrições)
+    cpf_device = {}
+    async for d in _db.inscricoes.find({}, {'cpf': 1, 'device': 1, 'user_agent': 1, '_id': 0}):
+        cpf = only_digits(d.get('cpf'))
+        dev = d.get('device') if d.get('device') in ('mobile', 'desktop') else dev_from_ua(d.get('user_agent'))
+        if cpf and dev:
+            cpf_device[cpf] = dev
+
+    async def count_col(col, base_filter, use_cpf_fallback):
+        desk = mob = 0
+        async for doc in _db[col].find(base_filter or {}, {'device': 1, 'user_agent': 1, 'cpf': 1, 'extra': 1, '_id': 0}):
+            dev = doc.get('device') if doc.get('device') in ('mobile', 'desktop') else None
+            if not dev:
+                dev = dev_from_ua(doc.get('user_agent'))
+            if not dev and use_cpf_fallback:
+                cpf = only_digits(doc.get('cpf') or (doc.get('extra') or {}).get('cpf'))
+                dev = cpf_device.get(cpf)
+            if dev == 'mobile':
+                mob += 1
+            elif dev == 'desktop':
+                desk += 1
+        return desk, mob
+
+    stages = [
+        ('Acessos ao site', 'accesses', None, False),
+        ('Inscrições finalizadas', 'inscricoes', {'finalized': True}, False),
+        ('PIX gerado', 'pix_generated', None, True),
+        ('PIX copiado', 'pix_copied', None, True),
+        ('PIX baixado', 'pix_downloaded', None, True),
+    ]
+    out = []
+    for label, col, f, fb in stages:
+        desk, mob = await count_col(col, f, fb)
+        out.append({'label': label, 'desktop': desk, 'mobile': mob})
+    return out
+
+
 @admin_router.get('/admin/dashboard/locations')
 async def locations(user=Depends(require_admin)):
     cursor = _db.accesses.find({}, {'city': 1, 'uf': 1})
