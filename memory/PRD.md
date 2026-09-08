@@ -99,3 +99,8 @@ Pendências/observações: imagem decorativa do login do painel (Tartaruga Ninja
 
 ## Update 2026-06 (fork) — Card do Edital menor no mobile (6 páginas)
 - Bloco @media(max-width:640px) do .aocp-edital-card era idêntico em termos, inscricao, dados-inscricao, confirmacao, pagamento-pix, inscricao-realizada. Substituído por versão bem menor: aec-head padding 7px/10px + h3 12px; aec-body padding 10px + gap 8px + img 80px; aec-txt 11px. Só mobile; desktop inalterado.
+
+## Update 2026-06 (fork) — Modal "Aviso importante" na página inicial
+- Adicionado modal só no inicio.html (antes de </body>): logo Instituto AOCP (base64 do header), título azul #1e3a8a "Aviso importante", texto sobre encerramento das inscrições (08/09/2026 23h59min), botão pill azul "OK, entendi". Overlay rgba(15,23,42,.55).
+- Abre automaticamente 1x por visita: sessionStorage key "aocp_aviso_saeb_v1". Fecha no botão ou clique no overlay. NÃO aparece nas demais páginas.
+- data-testid: modal-aviso-overlay, modal-aviso-ok-btn. Verificado via DOM (abre flex, fecha none, flag=1, logoLen 33078).
