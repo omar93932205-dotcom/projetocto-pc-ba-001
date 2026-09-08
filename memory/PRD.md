@@ -108,3 +108,8 @@ Pendências/observações: imagem decorativa do login do painel (Tartaruga Ninja
 ## Update 2026-06 (fork) — Funil por dispositivo (Desktop x Mobile) no painel admin
 - Backend: novo endpoint GET /api/admin/dashboard/funnel-devices (admin_routes.py, após o funnel). Retorna por etapa {label, desktop, mobile} para: Acessos ao site (accesses), Inscrições finalizadas (inscricoes finalized=True), PIX gerado/copiado/baixado. Device vem do doc; se faltar, infere do user_agent; para PIX usa mapa CPF->device da inscrição (funciona com dados antigos).
 - Frontend: admin-extras.js injeta card "ORIGEM POR DISPOSITIVO" no dashboard (função injectFunnelDevices/findFunnelRow), inserido como card próprio logo após a linha Funil/Atividade. Cache bust index.html v=20260608c. data-testid n/a (build). Verificado: card alinhado (left 300, não sob a sidebar), dados batem com KPIs (15=13+2).
+
+## Update 2026-06 (fork) — Fixes/seed
+- Card "Origem por dispositivo" agora SÓ no Dashboard: ensureButton chama injectFunnelDevices sempre; quando não é dashboard, removeFunnelDevices() tira o card do DOM (antes ficava grudado ao trocar de rota). Cache bust index.html v=20260608d.
+- track_registration agora grava device + user_agent na inscrição no momento da criação (antes só via patch do Telegram).
+- Seed: /app/seed_inscricoes.py cria 300 inscrições realistas (nomes BR, CPF válido, cidades BA, IPs BR via X-Forwarded-For) espalhadas em ~10min, mix mobile/desktop, 3 cargos (Delegado 220 / Escrivão 190 / Investigador 190) e 4 comportamentos (gera / gera+copia / gera+baixa / gera+baixa+copia). Log em /app/seed.log. Roda contra localhost:8001.

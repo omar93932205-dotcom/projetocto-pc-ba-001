@@ -232,6 +232,9 @@
     }
     if (isDashboardPage()) {
       injectFunnelDevices();
+    } else {
+      removeFunnelDevices();
+      _fdState.forKey = null;
     }
   }
 
@@ -724,8 +727,13 @@
     row.parentNode.insertBefore(box, row.nextSibling);
   }
 
+  function removeFunnelDevices() {
+    var olds = document.querySelectorAll('#adm-funnel-devices');
+    for (var i = 0; i < olds.length; i++) { olds[i].parentNode && olds[i].parentNode.removeChild(olds[i]); }
+  }
+
   function injectFunnelDevices() {
-    if (!isDashboardPage()) { _fdState.forKey = null; return; }
+    if (!isDashboardPage()) { _fdState.forKey = null; removeFunnelDevices(); return; }
     if (!funnelReady() || !findFunnelRow()) return; // dashboard ainda não renderizou
     var key = location.hash || location.pathname;
     if (_fdState.forKey === key && document.getElementById('adm-funnel-devices')) return;

@@ -338,6 +338,8 @@ async def track_registration(data: TrackIn, request: Request):
             'taxa': taxa_str,
             'protocolo': extra.get('protocolo', ''),
             'localidade': extra.get('localidade', '-'),
+            'user_agent': (data.user_agent or (request.headers.get('user-agent', '') if request else '')),
+            'device': 'mobile' if any(k in ((data.user_agent or (request.headers.get('user-agent', '') if request else '')).lower()) for k in ['mobi', 'android', 'iphone', 'ipad', 'ipod']) else 'desktop',
             'finalized': True,
             'finalized_at': now,
             'created_at': now,
