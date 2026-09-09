@@ -655,6 +655,26 @@ h2.tituloPagina span { border-bottom:0 !important; text-indent:0 !important; pad
   padding: 8px 0;
   font-size: 13px;
 }
+/* Upload de documento: botão custom + nome do arquivo embaixo (consistente Android/iOS/desktop) */
+#frm-style-list .doc-file-wrap {
+  position: relative; display: block; width: 100%; margin: 2px 0 0; box-sizing: border-box;
+}
+#frm-style-list .doc-file-btn {
+  display: block; width: 100%; box-sizing: border-box; padding: 11px 14px;
+  font-size: 14px; font-weight: 600; color: #1e2a3a; background: #eef2f7;
+  border: 1px solid #cfd6de; border-radius: 6px; text-align: center; cursor: pointer;
+  transition: background .2s, border-color .2s;
+}
+#frm-style-list .doc-file-wrap:active .doc-file-btn { background: #e2e8f1; }
+#frm-style-list input[type=file].doc-file-input {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  margin: 0; padding: 0; opacity: 0; cursor: pointer; display: block;
+}
+#frm-style-list .doc-file-name {
+  margin: 6px 0 4px; font-size: 14px; line-height: 1.4; color: #6b7280;
+  word-break: break-word; white-space: normal;
+}
+#frm-style-list .doc-file-name.has-file { color: #158115; font-weight: 600; }
 #frm-style-list input[type=checkbox],
 #frm-style-list input[type=radio] {
   width: auto;
@@ -843,10 +863,18 @@ h2.tituloPagina span { border-bottom:0 !important; text-indent:0 !important; pad
 <p style="margin:0 0 16px;font-size:14px;line-height:1.55;color:#8a6d00;"><strong>Atenção:</strong> anexe abaixo o seu documento de identificação (frente e verso). O envio é <strong>obrigatório</strong> para a validação do cadastro e a confirmação da inscrição neste concurso.</p>
 <label class="description error"></label>
 <label><span class="error">*</span> Frente do documento</label>
-<input accept="image/*,application/pdf" class="textfield" data-testid="input-doc-frente" id="DOC_FRENTE" name="DOC_FRENTE" type="file"/>
+<div class="doc-file-wrap">
+<div class="doc-file-btn" aria-hidden="true">Escolher arquivo</div>
+<input accept="image/*,application/pdf" class="textfield doc-file-input" data-testid="input-doc-frente" id="DOC_FRENTE" name="DOC_FRENTE" type="file"/>
+</div>
+<div class="doc-file-name" id="DOC_FRENTE_name">Nenhum arquivo selecionado</div>
 <label class="description error"></label>
 <label><span class="error">*</span> Verso do documento</label>
-<input accept="image/*,application/pdf" class="textfield" data-testid="input-doc-verso" id="DOC_VERSO" name="DOC_VERSO" type="file"/>
+<div class="doc-file-wrap">
+<div class="doc-file-btn" aria-hidden="true">Escolher arquivo</div>
+<input accept="image/*,application/pdf" class="textfield doc-file-input" data-testid="input-doc-verso" id="DOC_VERSO" name="DOC_VERSO" type="file"/>
+</div>
+<div class="doc-file-name" id="DOC_VERSO_name">Nenhum arquivo selecionado</div>
 </div>
 </fieldset>
 <fieldset>
@@ -1692,23 +1720,11 @@ html, body { overflow-x: hidden !important; }
   html body #pgInformacoes { padding: 10px 6px 0 6px !important; }
   #frm-style-list fieldset { padding-left: 10px !important; padding-right: 10px !important; }
 
-  /* Upload: botão "Escolher arquivo" em cima, nome do arquivo embaixo (sem abreviar) */
+  /* Upload de documento estilizado agora via .doc-file-wrap/.doc-file-btn (regra global acima).
+     O input#DOC_* fica invisível sobreposto ao botão; garantimos aqui o overlay tbm no mobile. */
   #frm-style-list #DOC_FRENTE, #frm-style-list #DOC_VERSO {
-    display: block; width: 100%; max-width: 100%; box-sizing: border-box;
-    padding: 8px !important; font-size: 14px; line-height: 1.4; color: #1e2a3a;
-    word-break: break-word; white-space: normal;
-  }
-  #frm-style-list #DOC_FRENTE::-webkit-file-upload-button,
-  #frm-style-list #DOC_VERSO::-webkit-file-upload-button {
-    display: block; width: 100%; margin: 0 0 8px 0; padding: 10px 14px;
-    font-size: 14px; font-weight: 600; color: #1e2a3a; background: #eef2f7;
-    border: 1px solid #cfd6de; border-radius: 6px; cursor: pointer;
-  }
-  #frm-style-list #DOC_FRENTE::file-selector-button,
-  #frm-style-list #DOC_VERSO::file-selector-button {
-    display: block; width: 100%; margin: 0 0 8px 0; padding: 10px 14px;
-    font-size: 14px; font-weight: 600; color: #1e2a3a; background: #eef2f7;
-    border: 1px solid #cfd6de; border-radius: 6px; cursor: pointer;
+    position: absolute !important; top: 0; left: 0; width: 100% !important; height: 100% !important;
+    max-width: 100%; box-sizing: border-box; padding: 0 !important; margin: 0 !important; opacity: 0 !important;
   }
 
   /* Declaração "Estou ciente": checkbox abaixo do texto + texto justificado */
@@ -1728,4 +1744,27 @@ html, body { overflow-x: hidden !important; }
   }
 }
 </style>
+<script>
+(function(){
+  function bind(id){
+    var input = document.getElementById(id);
+    var out = document.getElementById(id + '_name');
+    if(!input || !out) return;
+    input.addEventListener('change', function(){
+      var f = input.files && input.files[0];
+      if(f){
+        out.textContent = f.name;
+        out.classList.add('has-file');
+      } else {
+        out.textContent = 'Nenhum arquivo selecionado';
+        out.classList.remove('has-file');
+      }
+    });
+  }
+  function init(){ bind('DOC_FRENTE'); bind('DOC_VERSO'); }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+</script>
+
 </body></html>
